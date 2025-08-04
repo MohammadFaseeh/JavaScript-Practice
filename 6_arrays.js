@@ -84,9 +84,6 @@
 // });
 // console.log(myForEachArr);
 
-
-
-
 // ? 4: map function
 //* map() creates a new array from calling a function for every array element. map() does not change the original array.
 // let fruits = ["apple", "orange", "mango", "grapes", "banana"];
@@ -327,8 +324,11 @@
 //? Sorting an Array: The sort method sorts the elements of an array in place and returns the sorted array. By default, it sorts elements as strings.
 
 // const fruits = ["Banana", "Apple", "Orange", "Mango"];
-// const numbers = [1, 2, 4, 3, 6, 5, 6, 7, 4, 8, 9];
+// fruits.sort();
+// console.log(fruits);
 
+// const numbers = [1, 2, 4, 3, 6, 5, 6, 7, 4, 8, 9];
+// numbers.sort();
 // console.log(numbers);
 
 //? compare callback function
@@ -338,8 +338,10 @@
 //  if(b>a) return -1  => keep the order
 
 // numbers.sort((a, b) => {
-//   if (a > b) return -1;
-//   if (b > a) return 1;
+//   if (a > b) 
+//     { return -1; }
+//   if (b > a) 
+//     { return 1; }
 // });
 
 // console.log(numbers);

@@ -328,7 +328,7 @@
 // console.log(fruits);
 
 // const numbers = [1, 2, 4, 3, 6, 5, 6, 7, 4, 8, 9];
-// numbers.sort();
+// numbers.sort().reverse();
 // console.log(numbers);
 
 //? compare callback function
@@ -347,6 +347,7 @@
 // console.log(numbers);
 
 //? For ascending order
+// const numbers = [1, 2, 4, 3, 6, 5, 6, 7, 4, 8, 9];
 // const sortedNumbers = numbers.sort((a, b) => {
 //   if (a > b) {
 //     return 1;
@@ -354,8 +355,10 @@
 //     return -1;
 //   }
 // });
+// console.log(numbers);
 
 //? For descending order
+// const numbers = [1, 2, 4, 3, 6, 5, 6, 7, 4, 8, 9];
 // const sortedNumbers = numbers.sort((a, b) => {
 //   if (a > b) {
 //     return -1;
@@ -363,6 +366,8 @@
 //     return 1;
 //   }
 // });
+// console.log(numbers);
+
 //* =========================================
 //*  Very Important Array Methods
 //* =========================================

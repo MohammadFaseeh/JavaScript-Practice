@@ -211,7 +211,8 @@
 
 //? charCodeAt() : The charCodeAt() method returns the code of the character at a specified index in a string. The method returns a UTF-16 code (an integer between 0 and 65535).
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.charCodeAt(6); //47 Because charCode start from A=65 to Z=90
+// let result = text.charCodeAt(6); //74 Because charCode start from A=65 to Z=90
+// let result = text.charCodeAt(-6); //NaN
 // console.log(result);
 
 //todo ES2022 introduced the string method at():

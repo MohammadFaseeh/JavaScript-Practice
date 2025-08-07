@@ -20,14 +20,16 @@
 //* ============================
 //* Tricky Interview Questions
 //* ============================
-// console.log(10 + "20");
-// console.log(9 - "5");
-// console.log("Java" + "Script");
-// console.log(" " + " ");
-// let sum = " " + 0;
-// console.log(typeof sum);
-// console.log("vinod" - "thapa");
-// console.log(true + true);
-// console.log(true + false);
-// console.log(false + true);
-// console.log(false - true);
+// console.log(10 + "20"); //1020
+// console.log(9 - "5"); //4
+// console.log("Java" + "Script"); //JavaScript
+// console.log(" " + " "); //
+
+// let sum = " " + 0; //if we console it then output is 0
+// console.log(" " + 0); //string
+
+// console.log("vinod" - "thapa"); //NaN
+// console.log(true + true); //2
+// console.log(true + false); //1
+// console.log(false + true); //1
+// console.log(false - true); //-1

@@ -24,33 +24,33 @@
       <input type="text" id="inputField" />
       <button class="btn">click me</button>
       <div class="todoListsElem"></div>
+      <!-- <p id="todoFirst"></p> -->
     </div>
     <script>
-      let inputElem = document.getElementById("inputField");
-      let clickBtn = document.querySelector(".btn");
+      let inputField = document.querySelector("#inputField");
+      let button = document.querySelector(".btn");
       let todoElem = document.querySelector(".todoListsElem");
-      // let todoFirst = document.getElementById("todoFirst");
 
-      const addTodo = () => {
-        console.log(inputElem.value);
-        // todoFirst.textContent = inputElem.value;
-        let pElem = document.createElement("p");
-        pElem.textContent = inputElem.value;
-        console.log(pElem);
-        todoElem.append(pElem);
+      const todoList = () =>{
+        console.log(inputField.value);
+        let elemLists = document.createElement("p");
+        elemLists.innerText = inputField.value;
+        todoElem.append(elemLists);
 
-        inputElem.value = "";
-      };
+        inputField.value = "";
 
-      clickBtn.addEventListener("click", () => {
-        addTodo();
-      });
+      }
+
+      button.addEventListener("click", () =>{
+        todoList();
+      })
 
       todoElem.addEventListener("click", (event) => {
         console.log(event.target);
         let currentElem = event.target;
         currentElem.remove();
       });
+
     </script>
   </body>
 </html>

@@ -82,7 +82,7 @@
 //   return `${curElem} ${index}`;
 //     // console.log(arr);
 // });
-// console.log(myForEachArr);
+// console.log(myForEachArr); //it return undefine because for-each not return anything
 
 // ? 4: map function
 //* map() creates a new array from calling a function for every array element. map() does not change the original array.
@@ -445,3 +445,4 @@
 // }, 0);
 
 // console.log(totalPrice);
+

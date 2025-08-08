@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard Event Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .output {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .output p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .keyPressed, .keyCode, .charCode, .eventType {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Keyboard Event Tracker</h1>
+    
+    <input type="text" id="myInput" placeholder="Type something..." />
+    
+    <div class="output">
+        <p class="keyPressed">Key pressed: </p>
+        <p class="keyCode">Key code: </p>
+        <p class="charCode">Char code: </p>
+        <p class="eventType">Event type: </p>
+    </div>
+
+    <script>
+        const input = document.getElementById('myInput');
+        const keyPressedEl = document.querySelector('.keyPressed');
+        const keyCodeEl = document.querySelector('.keyCode');
+        const charCodeEl = document.querySelector('.charCode');
+        const eventTypeEl = document.querySelector('.eventType');
+
+        input.addEventListener('keydown', (e) => {
+            updateDisplay(e, 'keydown');
+        });
+
+        input.addEventListener('keyup', (e) => {
+            updateDisplay(e, 'keyup');
+        });
+
+        function updateDisplay(e, type) {
+            // Update content by appending to the existing text node
+            keyPressedEl.innerHTML = "Key pressed: " + (e.key === ' ' ? 'Space' : e.key);
+            keyCodeEl.innerHTML = "Key code: " + (e.code);
+            charCodeEl.innerHTML = "Char code: " + (e.key.charCodeAt(0) || 'N/A');
+            eventTypeEl.innerHTML = "Event type: " + type;
+            
+            // Handle modifier keys
+            if (event.ctrlKey) keyPressedEl.innerHTML = "Key pressed: Ctrl + " + e.key;
+            if (event.altKey) keyPressedEl.innerHTML = "Key pressed: Alt + " + e.key;
+            if (event.shiftKey) keyPressedEl.innerHTML = "Key pressed: Shift + " + e.key;
+        }   
+    </script>
+</body>
+</html>

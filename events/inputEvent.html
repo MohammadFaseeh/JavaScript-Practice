@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Event Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .output {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .output p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Input Event Tracker</h1>
+    
+    <input type="text" id="myInput" name="username" placeholder="Type something..." />
+    
+    <div class="output">
+        <p>Input value: <span id="inputValue"></span></p>
+        <p>Input name: <span id="inputName"></span></p>
+        <p>Input type: <span id="inputType"></span></p>
+        <p>Event type: <span id="eventType"></span></p>
+    </div>
+
+    <script>
+        const input = document.getElementById('myInput');
+        const inputValueEl = document.getElementById('inputValue');
+        const inputNameEl = document.getElementById('inputName');
+        const inputTypeEl = document.getElementById('inputType');
+        const eventTypeEl = document.getElementById('eventType');
+
+        // Track all input events
+        input.addEventListener('input', (e) => {
+            updateDisplay(e, 'input');
+        });
+        // On field selection
+        input.addEventListener('focus', (e) => {
+            updateDisplay(e, 'focus');
+        });
+        // On field exit
+        input.addEventListener('blur', (e) => {
+            updateDisplay(e, 'blur');
+        });
+        //After commit (for text)
+        input.addEventListener('change', (e) => {
+            updateDisplay(e, 'change');
+        });
+
+        function updateDisplay(e, type) {
+            inputValueEl.textContent = e.target.value;
+            inputNameEl.textContent = e.target.name;
+            inputTypeEl.textContent = e.inputType;
+            eventTypeEl.textContent = type;
+        }
+    </script>
+</body>
+</html>

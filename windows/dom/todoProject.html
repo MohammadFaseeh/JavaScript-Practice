@@ -96,7 +96,10 @@ input {
     </form>
 
 <script>
-   
+   const mainTodoElem = document.querySelector(".todo-lists-elem");
+    const inputValue = document.getElementById("inputValue");
+    let localTodoLists = JSON.parse(localStorage.getItem("TodoList")) || [];
+    
     // Function to create and add a todo item in DOM
     const addTodoDynamicElement = (curElem) => {
         const divElement = document.createElement("div");
@@ -148,4 +151,5 @@ input {
 </script>
 
 </body>
+
 </html>

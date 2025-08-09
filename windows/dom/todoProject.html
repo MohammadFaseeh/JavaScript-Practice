@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body {
+    background-color: #121212;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    width: 250px;
+    background-color: white;
+    color: black;
+}
+
+.btn, .deleteBtn {
+    background-color: #ffeb3b;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn:hover, .deleteBtn:hover {
+    background-color: #fdd835;
+}
+
+.todo-lists-elem {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.main_todo_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main_todo_div li {
+    list-style-type: circle;
+    font-size: 1rem;
+    text-transform: capitalize;
+}
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <br>
+    <form>
+        <div>
+            <input type="text" id="inputValue">
+            <button class="btn">Add Todo</button>
+        </div>
+        <section class="todo-lists-elem">
+
+        </section>
+    </form>
+
+<script>
+   
+    // Function to create and add a todo item in DOM
+    const addTodoDynamicElement = (curElem) => {
+        const divElement = document.createElement("div");
+        divElement.classList.add("main_todo_div");
+        divElement.innerHTML = `<li>${curElem}</li> <button class="deleteBtn">Delete</button>`;
+        mainTodoElem.append(divElement);
+
+        // Add delete functionality
+        divElement.querySelector(".deleteBtn").addEventListener("click", () => {
+            console.log(`Deleting: "${curElem}"`);
+            localTodoLists = localTodoLists.filter(item => item !== curElem);
+            console.log("Updated array after delete:", localTodoLists);
+
+            localStorage.setItem("TodoList", JSON.stringify(localTodoLists));
+            divElement.remove();
+        });
+    };
+
+    // Add new todo to list
+    const addTodoList = (e) => {
+        e.preventDefault();
+        const todoListValue = inputValue.value.trim();
+        inputValue.value = "";
+
+        if (todoListValue && !localTodoLists.includes(todoListValue)) {
+            localTodoLists.push(todoListValue);
+            localStorage.setItem("TodoList", JSON.stringify(localTodoLists));
+
+            console.log(`Added: "${todoListValue}"`);
+            console.log("Updated array after add:", localTodoLists);
+
+            addTodoDynamicElement(todoListValue);
+        }
+    };
+
+    // Show saved todos on page load
+    const showTodoList = () => {
+        mainTodoElem.innerHTML = ""; // clear DOM first
+        localTodoLists.forEach((curElem) => {
+            addTodoDynamicElement(curElem);
+        });
+    };
+
+    // Initial load
+    showTodoList();
+
+    // Add event listener for add button
+    document.querySelector(".btn").addEventListener("click", addTodoList);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  font-family: "Urbanist", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  width: 35rem;
+  background-color: #2c2f48;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+#countDown {
+  color: #f5ee62;
+  font-size: 10rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px rgba(245, 238, 98, 0.6);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+button {
+  background: #f5ee62;
+  color: #2c2f48;
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border: 2px solid transparent;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background: transparent;
+  color: #f5ee62;
+  border: 2px solid #f5ee62;
+  box-shadow: 0 6px 12px rgba(245, 238, 98, 0.3);
+}
+
+
+button:active {
+  transform: scale(0.95);
+}
+
+.resetValue {
+  margin-top: 2rem;
+}
+
+.resetValue p {
+  font-size: 1.6rem;
+  color: #fff;
+  background: rgba(245, 238, 98, 0.1);
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.8rem;
+  margin-bottom: 0.5rem;
+  box-shadow: inset 0 0 5px rgba(245, 238, 98, 0.4);
+}

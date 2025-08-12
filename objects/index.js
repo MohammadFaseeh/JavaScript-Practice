@@ -271,7 +271,7 @@
 
 //* =====================================
 //* Interview Question - Objects
-//* ======================================
+//* =====================================
 
 //! 1: What will be the output?
 
@@ -283,7 +283,7 @@
 
 //* ===============================================
 //* Interview Question - Object Manipulation:
-//* ================================================
+//* ===============================================
 //! Problem: Given an object representing a student, write a function to add a new subject with its corresponding grade to the student's record. Also check if the grades property is present or not?
 
 // let student = {
@@ -305,29 +305,32 @@
 // };
 
 // addSubjectGrade(student, "computer", 92);
-// addSubjectGrade(student, "physics", 72);//Also add more than one 
+// addSubjectGrade(student, "physics", 72); //Also add more than one 
 // console.log(student);
 
 
 //* ===============================================
 //* Interview Question - Object Comparison:
-//* ================================================
+//* ===============================================
 //! Problem: Write a function that compares two objects to determine if they have the same properties and values.
 
 // const areObjectsEqual = (obj1, obj2) => {
+  
 //   //   if (obj1.length != obj2.length) {
 //   //     console.log("hi");
 //   //     return false;
-//   //   }
+//   //   } // its not work because in object obj1.length & obj2.length not suppport
+
+// // use this approach
 //   let o1 = Object.keys(obj1);
 //   let o2 = Object.keys(obj2);
 
-//   if (o1.length != o2.length) {
+//   if (o1.length != o2.length) { // this work beacuse on object directly not apply object key store in variable then apply o1.length & o2.length on it
 //     console.log("There keys are not same");
 //     return false;
 //   }
 
-//   for (let key in obj1) {
+//   for (let key in obj1) { // and for-of loop not work only for-in used in object to access keys
 //     if (obj1[key] !== obj2[key]) {
 //       return false;
 //     }
@@ -335,6 +338,30 @@
 
 //   return true;
 // };
+
+// let objA = { name: "Alice", age: 26, city: "New York" };
+// let objB = { name: "Alice", age: 26, city: "New York" };
+
+// const areObjectsEqual = (objA, objB) => {
+//   let o1 = Object.keys(objA);
+//   let o2 = Object.keys(objB);
+
+//   if (o1.length !== o2.length) {
+//     console.log("They are not same");
+//     return false;
+//   }
+
+//   for (let key in objA) { // for-in works to loop keys of object
+//     if (objA[key] !== objB[key]) {
+//       return false;
+//     }
+//   }
+
+//   return true;
+// };
+
+// console.log(areObjectsEqual(objA, objB)); // true
+
 
 // // Example usage:
 // let objA = { name: "Alice", age: 26, city: "New York" };
@@ -344,9 +371,10 @@
 // console.log(areObjectsEqual(objA, objB)); // Should return true
 // console.log(areObjectsEqual(objA, objC)); // Should return false
 
+
 //* ===============================================
 //* Interview Question - Object Transformation:
-//* ================================================
+//* ===============================================
 //! Problem: Write a function that transforms an array of an objects into an object where the keys are the objects' ids.
 
 // let inputArray = [
@@ -359,7 +387,7 @@
 //   //   console.log(arr[2].id);
 //   let obj = {};
 //   for (let key of arr) {
-//     console.log(key.id, key);
+//     // console.log(key.id, key);
 //     obj[key.id] = key;
 //     // console.log(key);
 //   }

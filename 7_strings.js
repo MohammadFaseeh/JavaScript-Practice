@@ -56,38 +56,33 @@
 
 //? 2: String Search Methods
 //? a:  indexOf(): The indexOf() method returns the index (position) of the first occurrence of a string in a string, or it returns -1 if the string is not found:
+// left to right
 // syntax
 // indexOf(searchString)
 // indexOf(searchString, position)
 
 // let text = "Vinod Thapa";
-// console.log(text.indexOf("thapa"));
-// The indexOf() method is case sensitive.
+// console.log(text.indexOf("thapa")); // indexOf() method is case sensitive so it give error
 // console.log(text.indexOf("Thapa",2));
-// In position in upper-example mean after the 2 check 
-// if found give index value otherwise if not after given position output is -1
+// In position in upper-example mean after the 2 check if found give index value otherwise if not after given position output is -1
 
-// let strArr = Array.from(text);
-// // console.log(strArr);
-// let strMap = strArr.map((curElem, index) => `${curElem} - ${index}`);
-// console.log(strMap);
-
-//? b: lastIndexOf() : The lastIndexOf() method returns the index of the last occurrence of a specified text in a string:
+//? b: lastIndexOf() : The lastIndexOf() method returns the index of the last occurrence of a specified text in a string AND if not after given position output is -1
+// right to left
 // syntax
 // lastIndexOf(searchString)
 // lastIndexOf(searchString, position)
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let index = text.indexOf("JavaScript");
-// let index = text.lastIndexOf("JavaScript");
-// let index = text.lastIndexOf("JavaScript", 40);
+// let index = text.indexOf("JavaScript"); //6
+// let index = text.lastIndexOf("JavaScript"); //44
+// let index = text.lastIndexOf("JavaScript", 40); //6
 // console.log(index);
 
 //? c:  search(): The search() method searches a string for a string (or a regular expression) and returns the position of the match.
 //* Returns the index number where the first match is found. Returns -1 if no match is found.
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.search(/Javascript/i);
+// let result = text.search(/Javascript/i); //6
 // console.log(result);
 
 //*👉 Important Tips
@@ -95,36 +90,38 @@
 // The indexOf() method cannot take powerful search values (regular expressions).
 // They accept the same arguments (parameters), and return the same value
 
-//? match() : Returns an array of the matched values or null if no match is found.
+//? match() : "Returns an array" of the matched values or null if no match is found.
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.match("Javascript");
-// let result = text.match("JavaScript");
+// let result = text.match("Javascript"); // NULL because Script "S" is small its case sensitive
+// let result = text.match("JavaScript"); // it give value in new array with other info
+// let result = text.match(/Javascript/i); //same as above output
+
 // todo here the js converts the normal text into regular expression text.match(/JavaScript/); without the g flag
-// let result = text.match(/Javascript/gi);
+// let result = text.match(/Javascript/gi); // [ 'JavaScript', 'JavaScript' ]
 
 // console.log(result);
 
-//? matchAll() : Returns an iterator of all matches, providing detailed information about each match. Returns an empty iterator if no match is found.
+//? matchAll() : Returns an iterator of all matches, providing detailed information about each match. Returns an empty iterator if no match is found.use spread(..) or loop
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let matchResult = text.matchAll("javascript");
-// let matchResult = text.matchAll("JavaScript");
+// let matchResult = text.matchAll("javascript"); //Object [RegExp String Iterator] {} it give this because it convert it to regExpr(regular expression) "/javascript/"
+// let matchResult = text.matchAll("JavaScript"); //same as above
 // console.log(matchResult);
-// TODO: here the js converts the normal text into regular expression text.match(/JavaScript/g); also adds the g flag at the end
 
-// console.log(... matchResult);
+// TODO: here the js converts the normal text into regular expression text.match(/JavaScript/g); also adds the g flag at the end
+// so for solving one step is (...)
+// let matchResult = text.matchAll("javascript");//this give no output just blank because of case-sensitivity
+// let matchResult = text.matchAll("JavaScript"); // it give value in new array but in two array because two JavaScript matched with other info
+// console.log(... matchResult); 
+
+// second way is loop
+// for (let item of matchResult) {
+//   console.log(item); // same output as let matchResult = text.matchAll("JavaScript");
+// } 
 
 // for (let item of matchResult) {
-//   console.log(item[0]);
-// }
-
-// for (let index of matchResult) {
-//   console.log(index.index);
-// }
-
-// for (let { index } of matchResult) {
-//   console.log(index);
-// }
+//   console.log(item[0]); //it give only index 0 values of bth arrays
+// } 
 
 //? includes(): Returns true if the string contains the specified value, and false otherwise.
 // includes(searchString);
@@ -363,5 +360,6 @@
 
 // console.log(isPangram("The quick brown fox jumps over the lazy dog")); // true
 // console.log(isPangram("Hello world")); // false
+
 
 

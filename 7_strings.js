@@ -82,7 +82,7 @@
 //* Returns the index number where the first match is found. Returns -1 if no match is found.
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.search(/Javascript/i); //6
+// let result = text.search(/Javascript/i); //6 and if i not write it give -1 mean not found so i is necessary for checking index
 // console.log(result);
 
 //*👉 Important Tips
@@ -94,11 +94,11 @@
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
 // let result = text.match("Javascript"); // NULL because Script "S" is small its case sensitive
-// let result = text.match("JavaScript"); // it give value in new array with other info
+// let result = text.match("JavaScript"); // it give value in new array of only first which match with other info
 // let result = text.match(/Javascript/i); //same as above output
 
 // todo here the js converts the normal text into regular expression text.match(/JavaScript/); without the g flag
-// let result = text.match(/Javascript/gi); // [ 'JavaScript', 'JavaScript' ]
+// let result = text.match(/Javascript/gi); // [ 'JavaScript', 'JavaScript' ] write both which match because of g
 
 // console.log(result);
 
@@ -111,8 +111,10 @@
 // TODO: here the js converts the normal text into regular expression text.match(/JavaScript/g); also adds the g flag at the end
 // so for solving one step is (...)
 // let matchResult = text.matchAll("javascript");//this give no output just blank because of case-sensitivity
+ // let matchResult = text.matchAll(/JavaScript/i); //error
+// text.matchAll(/JavaScript/gi); OR text.matchAll(/JavaScript/g); //same work if we write normal text so we dont need to write in regular expression it automatically convert it with g
 // let matchResult = text.matchAll("JavaScript"); // it give value in new array but in two array because two JavaScript matched with other info
-// console.log(... matchResult); 
+// console.log(... matchResult);
 
 // second way is loop
 // for (let item of matchResult) {
@@ -128,17 +130,17 @@
 // includes(searchString, Position);
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let includeResult = text.includes(/java/i);
-// let includeResult = text.includes("J");
-// let includeResult = text.includes("J",45);
+// let includeResult = text.includes("java"); // false becasuse case sensitive
+// let includeResult = text.includes("Java"); // true if we not write complete JavaScript then also its true because which enter is their
+// let includeResult = text.includes(/java/i); // error because regular expression not used in includes
+// let includeResult = text.includes("J"); // true
+// let includeResult = text.includes("J",45); // false because after 45 no J is found
 // console.log(includeResult);
-
-// Note: includes() is case sensitive. includes() is an ES6 feature.
 
 //? startsWith(): The startsWith() method returns true if a string begins with a specified value.Otherwise it returns false:
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.startsWith("Helcome");
-// let result = text.startsWith("Hello");
+// let result = text.startsWith("Helcome"); // false
+// let result = text.startsWith("Hello"); // true
 // console.log(result);
 
 //* start position for the search can be specified
@@ -149,8 +151,8 @@
 //? endsWith(): The endsWith() method returns true if a string ends with a specified value. Otherwise it returns false:
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.endsWith("welcome");
-// let result = text.endsWith("course");
+// let result = text.endsWith("welcome"); // false
+// let result = text.endsWith("course"); // true
 // console.log(result);
 
 //* =========================================
@@ -165,14 +167,14 @@
 // slice(start, end);
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.slice(6);
-// let result = text.slice(6, 15);
+// let result = text.slice(6); // print all from 6 to end because end is not give
+// let result = text.slice(6, 15); // 6 to 14 print 15 not included
+// let result = text.slice(-61, 4); // Hell because it also accept negative value and count backward when -ve value
 // console.log(result);
 
-// subString() substring()
+// b: substring()
 
-//? a: substring: Extracts a portion of the string based on starting and ending indices.
-//* camelCase is used to separate words, substring is not to be intended as Sub String but as Substring
+//* Substring() and subString() not allowed only write in small alphabets like thus substring()
 // syntax
 // substring(indexStart) // index starts with 0
 // substring(indexStart, indexEnd)
@@ -182,14 +184,15 @@
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
 // let result = text.slice(-6); //it give string "ourse" from backward
 // let result = text.substring(-6);  //it give all string
+// let result = text.substring(4,8); // o Ja neglect 8th index
 // console.log(result);
 
 //! Homework
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.substring(0);
-// let result = text.substring(1);
-// let result = text.substring(-5);
-// let result = text.slice(-5);
+// let result = text.substring(0); // Hello JavaScript, welcome to our world best JavaScript course
+// let result = text.substring(1); // ello JavaScript, welcome to our world best JavaScript course
+// let result = text.substring(-5); // Hello JavaScript, welcome to our world best JavaScript course
+// let result = text.slice(-5); // ourse
 // console.log(result);
 
 //! similarities
@@ -201,9 +204,8 @@
 //! What is the output for the following code?
 
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.slice(1);
-// let result = text.substring(1);
-
+// let result = text.slice(1); // ello JavaScript, welcome to our world best JavaScript course
+// let result = text.substring(1); // ello JavaScript, welcome to our world best JavaScript course
 // console.log(result);
 
 //* =========================================
@@ -220,25 +222,20 @@
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
 // let result = text.charAt(); //H
 // let result = text.charAt(6); //J
-// let result = text.charAt(-6); // EMPTY
+// let result = text.charAt(-6); // EMPTY because not support -ve values
 // console.log(result);
 
 //? charCodeAt() : The charCodeAt() method returns the code of the character at a specified index in a string. The method returns a UTF-16 code (an integer between 0 and 65535).
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.charCodeAt(6); //74 Because charCode start from A=65 to Z=90
-// let result = text.charCodeAt(-6); //NaN
+// let result = text.charCodeAt(6); //74 Because charCode start from A=65 to Z=90 and for a=97 to z=122
+// let result = text.charCodeAt(-6); //NaN because not support -ve values
 // console.log(result);
 
 //todo ES2022 introduced the string method at():
 //? The at() method returns the character at a specified index (position) in a string. The at() method returns the same as charAt().
 // let text = "Hello JavaScript, welcome to our world best JavaScript course";
-// let result = text.at(-6);
+// let result = text.at(-6); // c because at support -ve
 // console.log(result);
-
-//todo Note
-// The at() method is a new addition to JavaScript.
-// It allows the use of negative indexes while charAt() do not.
-// Now you can use myString.at(-2) instead of charAt(myString.length-2).
 
 //* =========================================
 //* Replacing String Content:
@@ -246,16 +243,14 @@
 //! Replacing String Content:
 //? replace() : The replace method is used to replace a specified value with another value.
 // const str = "Hello, World!";
-// const newStr = str.replace("World", "JavaScript");
+// const newStr = str.replace("world", "JavaScript"); // Hello, World! same because it is case-sensitive
+// const newStr = str.replace("World", "JavaScript"); // Hello, JavaScript!
 // const newStr = str.replaceAll("World", "JavaScript"); //Change all in string not only one
-// console.log(newStr); // Outputs: Hello, JavaScript!
-
-// const newStr = str.replace("world", "JavaScript");
-// console.log(newStr); // Outputs: Hello, World! (Because Case-Sensitive)
+// console.log(newStr);
 
 //? Case-Insensitive Replacement: To perform a case-insensitive replacement, you can use the i flag in the regular expression.
 // let originalString = "Hello, World! How are you, World?";
-// let replacedString = originalString.replace(/world/i, "vinod");
+// let replacedString = originalString.replace(/world/i, "vinod"); // Hello, vinod! How are you, World?
 // let replacedString = originalString.replace(/world/gi, "vinod"); //so using this now we dont need replaceAll
 // console.log(replacedString);
 
@@ -271,22 +266,59 @@
 
 //? 2. trim: Removes whitespace only from both ends of the string not between
 // const str = "   Hello, World!   ";
-// console.log(str.length);// Output: "Hello, World!"
+// console.log(str.trim());// Output: "Hello, World!"
 
-// let trimStr = str.trim();
-// console.log(trimStr);
-// console.log(trimStr.length);
+//Also used trimStart and trimEnd
+// const str = "   Hello, World!   ";
+// console.log(str.trimStart()); // Output: "Hello, World!   "
+// console.log(str.trimEnd()); // Output: "   Hello, World!"
 
-//? 3. split: Splits the string into an array of substrings based on a specified delimiter.
+//? 3. split: split() is a string method that splits a string into an array of substrings, based on a separator (like space " ", comma ",", or any character/pattern).
+// Syntax
+// str.split(separator, limit);
+
+// Examples
+// 1. if nothing enter then copy same as it is
 // const str = "apple,orange,banana";
-// let strArr = str.split(",").reverse().join();
-// console.log(strArr);
+// let strArr = str.split() // [ 'apple,orange,banana' ]
+
+// 2. Split by space
+// let str = "Hello JavaScript World";
+// let result = str.split(" ");
+// console.log(result); // Output:["Hello", "JavaScript", "World"]
+
+// 3. Split by comma
+// let str = "apple,banana,grapes,orange";
+// let result = str.split(",");
+// console.log(result); // Output:["apple", "banana", "grapes", "orange"]
+
+// 4. Split every character
+// let str = "abc";
+// let result = str.split("");
+// console.log(result); // Output:["a", "b", "c"]
+
+// 5. Split with limit
+// let str = "a b c d e";
+// let result = str.split(" ", 3);
+// console.log(result); // Output:["a", "b", "c"] (only 3 splits allowed)
+
+// 4. Also reverse string but write like this
+// let str = "Hello";
+// let reversedStr = str.split("").reverse().join("");
+// console.log(reversedStr); Output:olleH
+
+// In this
+// Explanation:
+// str.split("") → converts "Hello" into ["H", "e", "l", "l", "o"].
+// .reverse() → reverses the array to ["o", "l", "l", "e", "H"].
+// .join("") → joins back into "olleH".
+// ✅ So, .reverse() works on arrays, not directly on strings.
+
 
 // String.fromCharCode()
 // It is a static method of the String object, not a method of string values.
-
 // Purpose:
-// It returns the character (letter, symbol, etc.) from a given ASCII (Unicode) number.
+// Works in the opposite way of charCodeAt(). It takes a Unicode number and gives back the character.
 
 // Example:
 // console.log(String.fromCharCode(97));  // "a"
@@ -360,6 +392,7 @@
 
 // console.log(isPangram("The quick brown fox jumps over the lazy dog")); // true
 // console.log(isPangram("Hello world")); // false
+
 
 
 

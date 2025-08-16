@@ -45,9 +45,8 @@
 // \\	    \	        Backslash
 
 // let text = "My name is " Thapa Technical " & I am a Full Stack Developer. ";
-// let text =
-//   "My name is ' Thapa Technical ' & \\ I am a \"Full Stack \" Developer. ";
-// // let text = 'My name is " Thapa Technical " & I am a Full Stack Developer. ';
+// let text = "My name is ' Thapa Technical ' & \\ I am a \"Full Stack \" Developer. ";
+// let text = 'My name is " Thapa Technical " & I am a Full Stack Developer. ';
 
 // console.log(text);
 
@@ -364,4 +363,5 @@
 
 // console.log(isPangram("The quick brown fox jumps over the lazy dog")); // true
 // console.log(isPangram("Hello world")); // false
+
 

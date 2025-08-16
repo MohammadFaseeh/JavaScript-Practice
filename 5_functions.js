@@ -51,7 +51,7 @@
 //? If the function has parameters, provide values (arguments) for those parameters inside the parentheses.
 
 //? How to call a function
-// greet();
+// greet(); // greet is refrence of function and () is execution
 
 //! Practice Time
 //! 1. Write a function to find the sum of two numbers.
@@ -141,7 +141,7 @@
 // function sum(a, b) {
 //   //   console.log(a + b);
 //   return a + b;
-//   console.log("hello I am function");
+//   console.log("hello I am function"); //this line not run because function return above
 // }
 
 // var result = sum(5, 5);
@@ -156,7 +156,8 @@
 //* ==============================
 //* IIFE - immediately invoked function expression
 //* =============================
-//? An IIFE, or Immediately Invoked Function Expression, is a JavaScript function that is defined and executed immediately after its creation. It is a way to create a self-contained block of code that doesn't interfere with the surrounding code and executes immediately
+//? An IIFE, or Immediately Invoked Function Expression, is a JavaScript function that is defined and executed immediately after its creation.
+// It is a way to create a self-contained block of code that "doesn't interfere with the surrounding code(not want to pollute from global scope)" and "executes immediately(mean we want connecting to db and when we execute it immediately we connect with database)"
 
 // Syntax
 // (function () {
@@ -246,3 +247,4 @@
 // };
 
 // console.log(isPalindrome("level"));
+

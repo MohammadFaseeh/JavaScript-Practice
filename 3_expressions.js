@@ -70,9 +70,9 @@
 //* ====================================
 
 //! What will be the Output 🤔💭
-// var result = "hello" / 2 ❓
+// var result = "hello" / 2; ❓
 // var result = "hello" / 2;
-// console.log(result);
+// console.log(result); //NaN
 
 //* ===================================
 //*  InterView Question
@@ -80,12 +80,12 @@
 
 //! var result = 0.1 + 0.2 ❓ 🤔💭
 // var result = 0.1 + 0.2;
-// console.log(result.toFixed(2));
+// console.log(result.toFixed(2)); //0.30
 // when working with floating-point numbers in JavaScript, consider using methods like toFixed() when precise decimal representation is necessary.
 
 // const result = 55 * "hello" ❓
 // var result = 55 * "hello";
-// console.log(result);
+// console.log(result); //NaN
 
 //* ===================================
 //* 3: String Operators
@@ -203,30 +203,33 @@
 //? Unary operators in JavaScript are operators that work with only one operand. They perform various operations such as negation, incrementing, decrementing, type conversion, and more.
 
 //? Unary Plus (+): Converts its operand into a number. If the operand is not already a number, it attempts to convert it.
-// console.log(+3);
-// console.log(+"5");
+// console.log(+3); //3
+// console.log(+"5"); //5 (string -> number)
+// console.log(+ true);  // 1
+// console.log(+ false); // 0
 
 //? Unary Negation (-): Negates its operand, converting non-numbers into numbers and then negating them.
-// console.log(-5);
-// console.log(-"3");
+// console.log(-5); //-5
+// console.log(-"3"); //-5 (string -> number)
+// console.log(- true);  // -1
 
 //? Prefix Increment (++x) and Prefix Decrement (--x): In prefix form, the value of the operand is first incremented or decremented, and then the result is returned.
 // var x = 5;
 // var y = --x;
-// console.log(y);
-// console.log(x);
+// console.log(y); //4
+// console.log(x); //4
 
 //? Postfix Increment (x++) and Postfix Decrement (x--): In postfix form, the value of the operand is first returned, and then it is incremented or decremented.
 // var x = 5;
 // var y = x++;
-// console.log(y);
-// console.log(x);
+// console.log(y); //5
+// console.log(x); //6
 
 //todo The current value of x (which is 5) is assigned to y. After the assignment, the value of x is then incremented by 1.
 
 //* ===================================
 //* 7: Conditional (ternary) operator
-//* ====================================
+//* ===================================
 
 //? syntax: condition ? expressionIfTrue : expressionIfFalse;
 
@@ -246,8 +249,8 @@
 //*  Combined Interview Questions
 //* ====================================
 
-// console.log(typeof ("5" - 3));
+// console.log(typeof ("5" - 3)); //number
 
-console.log(2 < 12 < 5);
+// console.log(2 < 12 < 5); // true
 
-// console.log("20" + 10 + 10);
+// console.log("20" + 10 + 10); // 201010

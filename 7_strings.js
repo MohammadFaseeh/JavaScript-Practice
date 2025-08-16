@@ -7,13 +7,31 @@
 // Note:
 //? Strings created with single or double quotes works the same.
 // There is no difference between the two.
+// typeof(string) is string
 
 //* String Properties:
 //? length: Property that returns the length of the string (number of characters).
-
 // const str = "Hello,    World!";
 // console.log(str.length);
 // including space n all
+
+//=====================================
+// Ways to Create Strings in JavaScript
+//=====================================
+// 1. String Literal (Normal Way ✅)
+// let str1 = "Hello World";
+// let str2 = 'JavaScript';
+// let str3 = `Template Literal`;
+
+// 2. String Constructor (Object Form ❌ not recommended usually)
+// let str4 = new String("Hello");
+// console.log(str4);        // [String: 'Hello']  (an object)
+// console.log(typeof str4); // "object"
+
+//Problem:
+// let a = "Hello";
+// let b = new String("Hello");
+// console.log(a === b); // false (one is primitive, other is object)
 
 //* =========================================
 //* Escape Character
@@ -346,3 +364,4 @@
 
 // console.log(isPangram("The quick brown fox jumps over the lazy dog")); // true
 // console.log(isPangram("Hello world")); // false
+

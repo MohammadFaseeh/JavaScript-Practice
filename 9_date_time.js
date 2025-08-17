@@ -2,11 +2,11 @@
 //* Date & Time Objects in JavaScript
 //* =========================================
 
-//? Date() constructor: The Date() constructor creates Date objects. When called as a function, it returns a string representing the current time.
+//? Date() constructor: The Date() constructor creates "Date objects"(typeOf(date) is object). When called as a function, it returns a string representing the current time.
 
 //? Creating a Date Object:
 // You can create a new Date object using the new keyword. It can be done in several ways:
-//todo There are 9 ways to create a new date object:
+// todo There are 9 ways to create a new date object:
 
 // Syntax
 // new Date()
@@ -18,51 +18,61 @@
 // new Date(year,month,day,hours,minutes)
 // new Date(year,month,day,hours,minutes,seconds)
 // new Date(year,month,day,hours,minutes,seconds,ms)
-
 // new Date(milliseconds)
 
 //? Current date and time
-//? new Date(): Creates a Date object representing the current date and time.
+//? new Date(): Creates a Date object representing the current date and time "without provided date string" in ().
 // const currentDate = new Date();
-// console.log(currentDate);
+// console.log(currentDate); // 2025-08-17T11:08:43.685Z
 //todo  This is the ISO 8601 format, which is a standard for representing dates and times. In this format, the date and time are represented together, separated by the letter "T". The "Z" at the end indicates that the time is in UTC (Coordinated Universal Time).
 
 // But the same when you run on browser it will return more human-readable format.
+// Sun Aug 17 2025 16:10:15 GMT+0500 (Pakistan Standard Time)
 
-//? 2: new Date(dateString): Creates a Date object based on the provided date string.
-// const dateString = "2025-08-10T10:44:09.274Z";
+//? 2: new Date(dateString): Creates a Date object based on the "provided date string" in ().
+// const dateString = "2025-08-17T11:08:43.685Z";
 // const dateFromString = new Date(dateString);
-// console.log(dateFromString);
+// console.log(dateFromString); //2025-08-17T11:08:43.685Z
 
 //? 3: new Date(year, month): Creates a Date object with the specified year and month.
-// const date1 = new Date(2025, 12);
+//const date1 = new Date(2025); // if only write year then it take it as millisecond 1970-01-01T00:00:02.025Z so we start from year and month both
+// const date1 = new Date(2025, 8); // 2025-08-31T19:00:00.000Z
 // console.log(date1);
+// in this 19 instead of 00.00(mean night 12) because Local: 2025-09-01 00:00:00 but it show according to universal time so Convert to UTC: subtract 5 hours → 2025-08-31 19:00:00Z
 
 //? 4: new Date(year, monthIndex, day): Creates a Date object with the specified year, month, and day.
-// const date2 = new Date(2025, 1, 19);
+// const date2 = new Date(2025, 8, 17); // 2025-09-16T19:00:00.000Z in this month → 0-based index So when write 8, it doesn’t mean August, it means the 9th month, which is September.
 // console.log(date2);
 
 //? 5: new Date(year, month, day, hours): Creates a Date object with the specified year, month, day, and hours.
-// const date3 = new Date(2025, 1, 19, 10);
+// const date3 = new Date(2025, 1, 19, 10); // 2025-02-19T05:00:00.000Z now only month is 2 and hours is -5 from given hours remaning same.
 // console.log(date3);
 
 //? 6: new Date(year, month, day, hours, minutes): Creates a Date object with the specified year, month, day, hours, and minutes.
-// const date4 = new Date(2025, 1, 19, 10, 44);
+// const date4 = new Date(2025, 1, 19, 10, 44); // 2025-02-19T05:44:00.000Z
 // console.log(date4);
 
 //? 7: new Date(year, month, day, hours, minutes, seconds): Creates a Date object with the specified year, month, day, hours, minutes, and seconds.
-// const date5 = new Date(2025, 1, 19, 10, 44, 9);
+// const date5 = new Date(2025, 1, 19, 10, 44, 9); // 2025-02-19T05:44:09.000Z
 // console.log(date5);
 
 //? 8: new Date(year, month, day, hours, minutes, seconds, ms): Creates a Date object with the specified year, month, day, hours, minutes, seconds, and milliseconds.
-// const date6 = new Date(2025, 1, 19, 10, 44, 9, 274);
+// const date6 = new Date(2025, 1, 19, 10, 44, 9, 274); // 2025-02-19T05:44:09.274Z
 // console.log(date6);
 
-//? 9: new Date(milliseconds): Creates a Date object representing the number of milliseconds since the Unix epoch (January 1, 1970, 00:00:00 UTC).
-// const curMilliSeconds = new Date().getTime();
-// // const milliseconds = 1632090690883; // Example milliseconds
-// const dateFromMilliseconds = new Date(curMilliSeconds);
-// console.log(dateFromMilliseconds);
+//? 9: new Date(milliseconds): When you use new Date(milliseconds), you are creating a date object based on the number of milliseconds passed since January 1, 1970, 00:00:00 UTC (the Unix Epoch).
+
+// 0 milliseconds → Thu Jan 01 1970 00:00:00 UTC
+// const d1 = new Date(0);
+// console.log(d1); // 1970-01-01T00:00:00.000Z
+
+// 1000 milliseconds → Thu Jan 01 1970 00:00:01 UTC (1 second later)
+// const d2 = new Date(1000);
+// console.log(d2); // 1970-01-01T00:00:01.000Z
+
+// 86400000 milliseconds → Fri Jan 02 1970 00:00:00 UTC (1 day later, because 24×60×60×1000 = 86400000 ms)
+// const d3 = new Date(86400000);
+// console.log(d3); // 1970-01-02T00:00:00.000Z
 
 //todo Note:
 //? 1: JavaScript counts months from 0 to 11:
@@ -72,8 +82,8 @@
 
 //* Date String Format: If the dateString is in a recognizable format, the Date object will be created accordingly.
 //? new Date(date string) creates a date object from a date string
-// const date1 = new Date("2025-01-05"); // Year-Month-Day
-// const date2 = new Date("January 5, 2025"); // Month Day, Year
+// const date1 = new Date("2025-01-05"); // Output:2025-01-05T00:00:00.000Z its not have change in date and month because it is treated as UTC
+// const date2 = new Date("January 5, 2025"); // Output:2025-01-04T19:00:00.000Z its not have change in date and time because it is treated as local-time
 // console.log(date1);
 // console.log(date2);
 
@@ -82,107 +92,137 @@
 //* ===================================================
 
 // You can get various components of a date using the methods of the Date object:
-// const currentDate = new Date();
 // //? In a date object, the time is static.
-// const year = currentDate.getFullYear();
-// const month = currentDate.getMonth(); // 0-based index
-// const date = currentDate.getDate();
-// const day = currentDate.getDay(); // day of the week (0 for Sunday, 1 for Monday, ..., 6 for Saturday)
-// console.log(currentDate);
+
+// const currentDate = new Date();
+// console.log(currentDate); //2025-08-17T13:21:38.469Z
+
+// const year = currentDate.getFullYear(); //2025
+// const month = currentDate.getMonth(); // 7(0-based index)
+// const date = currentDate.getDate(); //17
+// const day = currentDate.getDay(); // Output:0 because today is sunday(0 for Sunday, 1 for Monday, ..., 6 for Saturday)
+
 // console.log(day);
 
 //* ==================================================
 //* JavaScript Set Date Methods / Setting Components:
 //* ===================================================
 
-// const date = new Date();
-
 //? setFullYear(yearValue[, monthValue[, dayValue]]): Sets the full year for a specified date according to local time.
-// console.log(date);
 
-// date.setFullYear(2025);
-// console.log(date); // Date object with the year set to 2025
+// const date = new Date();
+// console.log(date); // 2025-08-17T13:25:20.754Z
+
+// date.setFullYear(2026);
+// console.log(date); // 2026-08-17T13:27:12.502Z
 
 //? setMonth(monthIndex): Sets the month for a specified date according to local time.
-// date.setMonth(5); // June (months are zero-based)
-// console.log(date); // Date object with the month set to June
+// date.setMonth(9);
+// console.log(date); // 2025-10-17T13:29:05.834Z(0-based index)
 
 //? setDate(dayValue): Sets the day of the month for a specified date according to local time.
-// date.setDate(15);
-// console.log(date); // Date object with the day of the month set to 15
+// date.setDate(18);
+// console.log(date); // 2025-08-18T13:30:40.560Z
 
 //* ==================================================
 //* JavaScript Get Time Methods / Getting Components:
 //* ===================================================
 // const currentTime = new Date();
+// console.log(currentTime); // 2025-08-17T13:32:09.515Z
 
-// const hours = currentTime.getHours();
-// const minutes = currentTime.getMinutes();
-// const seconds = currentTime.getSeconds();
-// const time = currentTime.getTime();
+// const hours = currentTime.getHours(); //18(not according to local time give exact time)
+// const minutes = currentTime.getMinutes(); //32
+// const seconds = currentTime.getSeconds(); //43
+// const time = currentTime.getTime(); // 1755437654850millisecond (.getTime() convert time in millisecond since January 01, 1970)
 // console.log(time);
 
 //* ==================================================
 //* JavaScript Set Time Methods / Getting Components:
 //* ===================================================
 
-// const date = new Date();
+// const date = new Date(); // 2025-08-17T13:36:19.362Z
+// console.log(date);
 
 //? setHours(hourValue): Sets the hours for a specified date according to local time.
 // date.setHours(10);
-// console.log(date); // Date object with the hours set to 10
+// console.log(date); // 2025-08-17T05:36:47.851Z (according to local time -5 hours)
 
 //? setMinutes(minuteValue): Sets the minutes for a specified date according to local time.
 // date.setMinutes(30);
-// console.log(date); // Date object with the minutes set to 30
+// console.log(date); // 2025-08-17T13:30:52.204Z
 
 //? setSeconds(secondValue[, millisecondValue]): Sets the seconds for a specified date according to local time.
 // date.setSeconds(45);
-// console.log(date); // Date object with the seconds set to 45
+// console.log(date); // 2025-08-17T13:38:45.653Z
 
 //? setMilliseconds(millisecondValue): Sets the milliseconds for a specified date according to local time.
 // date.setMilliseconds(500);
-// console.log(date); // Date object with the milliseconds set to 500
+// console.log(date); // 2025-08-17T13:38:46.500Z
 
 //? setTime(timeValue): Sets the Date object to the time represented by a number of milliseconds since January 1, 1970, 00:00:00 UTC.
 // date.setTime(1832090690883);
-// console.log(date); // Date object representing the specified time
+// console.log(date); // 2028-01-21T18:04:50.883Z(accroding to given millisecond since January 01, 1970)
 
-//* ================================================================
+//* =====================================================
 //* A few useful methods of the Date object in JavaScript
-//* ================================================================
+//* =====================================================
+// let date = new Date();
+// console.log(date); // 2025-08-17T14:17:24.116Z
 
-//? 1: toLocaleString(): Returns a string representing the date and time portion of a Date object using the current locale's conventions.
-// const date = new Date();
+//? 1: toString(): Returns Date object into a full string representation. It uses local time.
+// let newDate = date.toString();
+// console.log(newDate); // Sun Aug 17 2025 19:17:24 GMT+0500 (Pakistan Standard Time)
+
+//? 2: toDateString(): Converts a Date object into a date-only string. Also in local time.
+// let newDate = date.toDateString();
+// console.log(newDate); // Sun Aug 17 2025
+
+//? 3: toLocaleString(): Shows both date and time in local format. Takes your computer’s region/language and timezone.
 // const localString = date.toLocaleString();
-// console.log(localString); // Example output: "2/19/2025, 4:30:00 PM" (depending on the locale)
+// console.log(localString); // 8/17/2025, 7:26:07 PM
 
-//? 2: toLocaleDateString(): Returns a string representing the date portion of a Date object using the current locale's conventions.
-// const date = new Date();
+//? 4: toLocaleDateString(): Returns a string representing the date portion of a Date object using the current locale's conventions.
 // const localDateString = date.toLocaleDateString();
-// console.log(localDateString); // Example output: "2/19/2025" (depending on the locale)
+// console.log(localDateString); // 8/17/2025
 
-//? 3: toLocaleTimeString(): Returns a string representing the time portion of a Date object using the current locale's conventions.
-// const date = new Date();
+//? 5: toLocaleTimeString(): Returns a string representing the time portion of a Date object using the current locale's conventions.
 // const localTimeString = date.toLocaleTimeString();
-// console.log(localTimeString); // Example output: "4:30:00 PM" (depending on the locale)
+// console.log(localTimeString); // 7:28:02 PM
 
-//? 5: parse(): Parses a string representation of a date and returns the number of milliseconds since January 1, 1970, 00:00:00 UTC.
-// const dateString = "2025-02-19T16:30:00Z";
+//todo: These all depending on local date and time
+
+//? 6: parse(): Parses a string representation of a date and returns the number of milliseconds since January 1, 1970, 00:00:00 UTC.
+// If the string is invalid → it returns NaN.
+
+// const parsedDate = Date.parse(date);
+// console.log(parsedDate); // 1755441028000(in millisecond since January 1, 1970, 00:00:00 UTC to Now)
+// Also give like this
+// const dateString = "2025-08-17T14:17:24.116Z";
 // const parsedDate = Date.parse(dateString);
-// console.log(parsedDate); // Example output: 1703254200000 (milliseconds)
+// console.log(parsedDate); // 1755440244116
 
 //* ==================
 //* //* Bonus
 //* =================
 
-// let newDate = new Date();
-// console.log(Date.now());
-// console.log(newDate.getTime());
+//? Date.now(): It is a static method of the Date object. It returns the current time in milliseconds since January 1, 1970, 00:00:00 UTC (the Unix Epoch).
+// Unlike new Date(), it does not create a Date object — it just gives you a number.
+// console.log(Date.now()); //1755441592590
 
-//? Date.now() is a static method of the Date object.
+// if we want to convert that milliseconds in seconds simply do
+// console.log(Math.floor(Date.now()/1000)); //1755442332
+
+//? Date.getTime(): but in this we create a Date object first not directly like Date.now()
+
+// let newDate = new Date();
+// console.log(newDate.getTime()); // 1755441870466
+
+// we also give specific date in this
+// let newDate = new Date("2025-08-17T14:17:24.116Z");
+// console.log(newDate.getTime());  // 1755440244116
+
+//? todo:
 //? Use Date.now() if you want the timestamp right this second.
-//? It returns the current timestamp (number of milliseconds) representing the current moment.
 //? Use new Date().getTime() if you have an existing Date object from elsewhere and want its timestamp.
 
 //! ==================
@@ -203,10 +243,7 @@
 // console.log("Original Date:",currentDate.toDateString());
 // console.log("New Date:",newDate.toDateString());
 
-
 //! Question: Write a function to calculate the difference in days between two given dates.
-
-
 
 // function dateDifference(date1,date2){
 //     let oneDay = 24 * 60 * 60 * 1000; //converts milliseconds into days.

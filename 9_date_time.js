@@ -21,9 +21,9 @@
 // new Date(milliseconds)
 
 //? Current date and time
-//? new Date(): Creates a Date object representing the current date and time "without provided date string" in ().
+//? 1: new Date(): Creates a Date object representing the current date and time "without provided date string" in ().
 // const currentDate = new Date();
-// console.log(currentDate); // 2025-08-17T11:08:43.685Z
+// console.log(currentDate); // 2025-08-17T11:08:43.685Z(only -5 hours)
 //todo  This is the ISO 8601 format, which is a standard for representing dates and times. In this format, the date and time are represented together, separated by the letter "T". The "Z" at the end indicates that the time is in UTC (Coordinated Universal Time).
 
 // But the same when you run on browser it will return more human-readable format.
@@ -107,8 +107,6 @@
 //* ==================================================
 //* JavaScript Set Date Methods / Setting Components:
 //* ===================================================
-
-//? setFullYear(yearValue[, monthValue[, dayValue]]): Sets the full year for a specified date according to local time.
 
 // const date = new Date();
 // console.log(date); // 2025-08-17T13:25:20.754Z
@@ -233,15 +231,15 @@
 
 // function addDays(date,days){
 // let result = new Date(date);
-// result.setDate(result.getDate() + 5);
+// result.setDate(result.getDate() + days);
 // return result;
 // }
 
 // let currentDate = new Date ("2025-08-10");
 // let newDate = addDays(currentDate,5);
 
-// console.log("Original Date:",currentDate.toDateString());
-// console.log("New Date:",newDate.toDateString());
+// console.log("Original Date:",currentDate.toDateString()); // Original Date: Sun Aug 10 2025
+// console.log("New Date:",newDate.toDateString()); // New Date: Fri Aug 15 2025
 
 //! Question: Write a function to calculate the difference in days between two given dates.
 
@@ -254,4 +252,4 @@
 // let date1 = new Date("2025-08-10");
 // let date2 = new Date("2025-08-15");
 
-// console.log(dateDifference(date1,date2));
+// console.log(dateDifference(date1,date2)); //5

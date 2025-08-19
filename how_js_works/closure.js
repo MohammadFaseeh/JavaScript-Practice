@@ -10,29 +10,43 @@
 //   function innerFunction() {
 //     console.log(outerVariable);
 //   }
-//   return innerFunction;
+//   return innerFunction; // here outer function return the inner function not value so it is ok to use it out of inner scope because function not return in its scope its value that return in scope
 // }
-
 // var closureFunction = outerFunction();
-// console.dir(closureFunction); // [Function: innerFunction]
 // closureFunction(); // I'm from outer
 
-// Here when we are calling the closureFunction() it is actually going to call the innerFunction() but in our executionContext the outerFunction is already popped  out. Still we can access the outerVariable value and how we are able to access it, is what closure all about ?
+//Why closures are useful?
+// 1. Data Privacy → You can hide variables inside closures.like outerVariable in above example
+// 2. State Management → Useful for counters, caching, etc.
+// 3. Callbacks & Event Listeners → Often use closures.
 
-// We just need to know that an inner function has always access to the variables of the outer (parent) function. That's it.
+//===================
+// Real-life Example
+//===================
 
-// Why is it like that? It's because the variable object of the parent function stays in memory even after the function returns, and our inner function has access to this variable object through the scope chain.
+// function createBankAccount(initialBalance) {
+//   let balance = initialBalance;
 
-// It might be beneficial to clarify that the call stack is simply the execution order and it is not the same thing as the computer's memory, which is where the variables are held.  So even though the function was removed from the call stack, its variables are still maintained in memory until they are no longer needed and garbage collection comes and removes them.
-
-//* also one more example
-
-// function multiplier(factor) {
-//   return function (number) {
-//     console.log(number, factor);
-//     return number * factor;
+//   return {
+//     deposit: function(amount) {
+//       balance += amount;
+//       console.log(`Deposited: ${amount}, Balance: ${balance}`);
+//     },
+//     withdraw: function(amount) {
+//       if (amount <= balance) {
+//         balance -= amount;
+//         console.log(`Withdrew: ${amount}, Balance: ${balance}`);
+//       } else {
+//         console.log("Insufficient balance!");
+//       }
+//     },
+//     checkBalance: function() {
+//       console.log(`Current Balance: ${balance}`);
+//     }
 //   };
 // }
 
-// const double = multiplier(2);
-// console.log(double(5));
+// const myAccount = createBankAccount(100);
+// myAccount.deposit(50);   // Deposited: 50, Balance: 150
+// myAccount.withdraw(30);  // Withdrew: 30, Balance: 120
+// myAccount.checkBalance();// Current Balance: 120

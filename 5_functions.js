@@ -1,4 +1,4 @@
-//* ===============================
+//* ==============================
 //* Function in JavaScript
 //* ==============================
 //? In JavaScript, a function is a block of reusable code that performs a specific task or set of tasks. Functions are used to organize code into modular and manageable pieces, promote code reuse, and make programs more readable.
@@ -51,7 +51,7 @@
 //? If the function has parameters, provide values (arguments) for those parameters inside the parentheses.
 
 //? How to call a function
-// greet(); // greet is refrence of function and () is execution
+// greet();
 
 //! Practice Time
 //! 1. Write a function to find the sum of two numbers.
@@ -79,6 +79,8 @@
 //   // Code to be executed when the function is called
 // }
 
+// rest parameter(use ... in parameter to collect multiple arguments into an "array"), default parameter(in which parameter give default value if no argument given), Named Parameters (Object Destructuring in Parameters), Callback(Pass function as parameter), Value vs Reference all are important concepts
+
 //* ==============================
 //* Function Argument:
 //* ==============================
@@ -88,7 +90,7 @@
 //? syntax:
 //? functionName(argument1, argument2, ...);
 
-//! Practice Time
+//! Practice Time:
 //? Let's say we want to greet students with one same line
 //! Write a JavaScript program that defines a function called greet to welcome individuals to the Thapa Technical JS Course. The function should take a name parameter and output the message "Hello [name], Welcome to Thapa Technical JS Course". Call the function twice, once with the argument "vinod" and once with the argument "ram".
 // function greet(name) {
@@ -106,10 +108,20 @@
 // sum(5, 10);
 // sum(50, 10);
 
+// in argument we pass Primitive Values(Passed by value → changes inside function don’t affect the original), Objects, arrays, functions(passed by reference), Functions (Callbacks), Default Values(if missing or undefined), Rest Parameters (...args) in argument sum(1, 2, 3, 4,.....), Named Parameters (Object Destructuring) -> Pass an object and destructure inside function.
+
+// and also Combination of Types
+// function example(a, b = 5, ...rest) {
+//   console.log(a, b, rest);
+// }
+// example(1, undefined, 2, 3, 4); // 1 5 [2, 3, 4]
+
 //* ==============================
 //* Function expressions
 //* ==============================
 //? A function expression is a way to define a function as part of an expression. It can be either named or anonymous. If it's named, it becomes a named function expression.
+
+// Named function expression
 
 // var result = function sum(a, b) {
 //   console.log(a + b);
@@ -141,46 +153,57 @@
 // function sum(a, b) {
 //   //   console.log(a + b);
 //   return a + b;
-//   console.log("hello I am function"); //this line not run because function return above
+//   // console.log("hello I am function"); // this not run because come after the return
 // }
 
 // var result = sum(5, 5);
-// // console.log(result);
+// console.log(result); // 10
 
-// console.log("the sum of two number is " + result);
+// console.log("the sum of two number is " + result); // the sum of two number is 10
 
-// console.log(sum(5, 5));
-// console.log(sum(15, 50));
-// console.log(sum(25, 750));
+// console.log(sum(5, 5)); // 10
+// console.log(sum(15, 50)); // 65
+// console.log(sum(25, 750)); // 775
 
-//* ==============================
+//* ==============================================
 //* IIFE - immediately invoked function expression
-//* =============================
-//? An IIFE, or Immediately Invoked Function Expression, is a JavaScript function that is defined and executed immediately after its creation.
-// It is a way to create a self-contained block of code that "doesn't interfere with the surrounding code(not want to pollute from global scope)" and "executes immediately(mean we want connecting to db and when we execute it immediately we connect with database)"
+//* ==============================================
+//? An IIFE, or Immediately Invoked Function Expression, is a JavaScript function that is defined and executed immediately after its creation. 
+//Remeber: It is a way to create a self-contained block of code that "doesn't interfere with the surrounding code(not want to pollute from global scope)" and "executes immediately".Useful for initialization code that runs only once.
 
-// Syntax
+// Syntax: use two () () -> one for function declaration and second for execution immediately
 // (function () {
 //   // code to be executed
 // })();
 
+// We write IIFE in different ways:(just for concept)
+// Normal Function IIFE(Named IIFE)
+// (function message(){
+//   console.log("Hello");
+// })() // Hello
+
+// Arrow Function IIFE(Un-named IIFE)
+// (() => {
+//   console.log("Hello");
+// })() // Hello
+
+// IIFE with Parameters
+// ((name) => {
+//   console.log(`Hello, ${name}!`);
+// })("Faseeh"); // Hello, Faseeh!
+
+// IIFE with return value
 // var result = (function (a, b) {
 //   console.log(a + b);
 //   return a + b;
-// })(5, 10);
-
-// console.log("the sum of two number is " + result);
+// })(5, 10); // 15
+// console.log("the sum of two number is " + result); // the sum of two number is 15
 
 // !Practice Time ( IIFE with Parameters)
-
 //? Interview Questions
 
 //! Question 1: Calculator Function
 //! Write a JavaScript function calculator that takes two numbers and an operator as parameters and returns the result of the operation. The function should support addition, subtraction, multiplication, and division.
-
-// console.log(calculator(5, 2, '+')); // Output: 7
-// console.log(calculator(8, 4, '-')); // Output: 4
-// console.log(calculator(10, 2, '/')); // Output: 5
 
 // const calculator = (num1, num2, operator) => {
 //   let result;
@@ -224,7 +247,7 @@
 //   return reverse;
 // };
 
-// console.log(isReverse("vinod thapa"));
+// console.log(isReverse("vinod thapa")); // apaht doniv
 
 //! Palindrome Check:
 //! Create a function to determine if a given string is a palindrome (reads the same backward as forward).
@@ -247,4 +270,3 @@
 // };
 
 // console.log(isPalindrome("level"));
-

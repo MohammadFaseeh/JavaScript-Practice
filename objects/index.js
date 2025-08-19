@@ -306,6 +306,28 @@
 // console.log(p.name); // "Faseeh"
 
 //6. Arrow Functions (⚡special case)
+
+// const normalFunc = () => {
+//   console.log(this);
+// }
+// normalFunc(); // {}
+
+// this.name = "hassan";
+// const normalFunc = () => {
+//     let name = "faseeh";
+//   console.log(this.name);
+// }
+// normalFunc(); // undefined
+
+// this.name = "hassan";
+// const normalFunc = () => {
+//     let name = "faseeh";
+//   console.log(this.name);
+// }
+// normalFunc(); // hassan
+
+// if use in object as arrow function same like this output
+
 // const obj = {
 //   name: "thapa technical",
 //   greet: () => {
@@ -316,7 +338,8 @@
 
 // obj.greet(); //{}
 
-//And
+// But this work
+
 // this.name = "Faseeh"; // if we declare it outside then so now arrow use this of global that we declare here this is not undefined
 // const obj = {
 //   name: "thapa technical",

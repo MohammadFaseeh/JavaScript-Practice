@@ -51,8 +51,8 @@
 //?👉 Array Traversal / Iterating Over Arrays
 
 //? 1: for of loop , also known as iterable
-//* for...of Loop: The for...of loop is used to iterate over the values of an iterable object, such as arrays, strings, map and set.
-// not work with objects
+//* for...of Loop: The for...of loop is used to iterate over the values of an iterable object, such as arrays, String (loops through characters), map and set.
+// not work with Object (not iterable by default), Number, Boolean, null, undefined
 
 // let fruits = ["apple", "orange", "mango", "grapes", "banana"];
 // for (let item of fruits) {
@@ -82,12 +82,13 @@
 //   console.log(item); //0 1 2 3 4
 // }
 
-//Note: for-in loop is ❌ Bad for arrays → order not guaranteed, also loops inherited props. ✅ Good for objects.
+// Note: for-in loop is ❌ Bad for arrays → order not guaranteed, also loops inherited props. Also rare use with Strings(gives indexes of characters). ✅ Good for objects. 
+// not used with Map, Set, Number, Boolean, null/undefined
 
 // ? 3: forEach Method: It is an array method not loop, used only with arrays.It runs a function once for each element in the array.
+// used with (Array, Map , Set), but not with(Object, String,convert to array first), Number, Boolean, Null/Undefined
 
 // let fruits = ["apple", "orange", "mango", "grapes", "banana"];
-
 // fruits.forEach(function(curElem, index, arr) {
 //     console.log(`${curElem} ${index}`);
 // });
@@ -98,12 +99,13 @@
 // // return `${curElem} ${index}`; //it return undefine because for-each not return anything
 // console.log(arr); // [ 'apple', 'orange', 'mango', 'grapes', 'banana' ] it give same like this array 5 time including this because for-each it calls that function on each item in array seprately.
 // });
-// console.log(myForEachArr); // undefined because nothing return
+// console.log(myForEachArr); // undefined because nothing return this is its drawback, for this when want to return use map, filter(if want on condition) , reduce(to single value)
 
 // forEach → remember its array method not loop and only limited to arrays, no break/continue, forEach cannot work without a function, because forEach is a method that expects a callback function as an argument.
 
 // ? 4: map function
-//* .map() is also an array method.map() creates a new array from calling a function for every array element. map() does not change the original array.
+// only work with array not with any other datatype
+//* .map() is also an array method. map() creates a new array from calling a function for every array element. map() does not change the original array.
 // let fruits = ["apple", "orange", "mango", "grapes", "banana"];
 // fruits.map(function(curElem){
 //     console.log(curElem); // apple orange mango grapes banana(horizentally in output)
@@ -139,12 +141,19 @@
 //* Key Differences
 //! Return Value:
 //? forEach: It doesn't return a value. The forEach method is used for iterating over the elements of an array and performing a side effect, such as modifying the array or performing a task for each element.
-
 //? map: It returns a new array containing the results of applying a function to each element in the original array. The original array remains unchanged.
 
 //! Chaining:
-//? forEach: It doesn't return a value, so it cannot be directly chained with other array methods.
-//? map: Since it returns a new array, you can chain other array methods after using map.
+// Chaining means calling multiple methods one after another on the same object/array, because each method returns a value that can be used by the next method.
+
+// const nums = [1, 2, 3, 4, 5];
+// const result = nums
+// .filter(n => n % 2 === 0)  // keep even numbers [2,4]
+// .map(n => n * 10)          // multiply each by 10 [20,40]
+// .forEach(n => console.log(n)); // prints 20, 40
+
+// These can be chained together: .filter(), .slice(), .concat(), .flat(), .sort(), .reverse()
+// These can be chained together(break chain): .forEach(), .reduce(), .find(), .some(), .includes() so These usually come at the end of a chain.
 
 // REMEMBER THIS:
 // Mutating vs Non-Mutating Array Methods
@@ -331,19 +340,39 @@
 // console.log(result2); // 3 mean 3rd index from this array [ 5, 10, 15, 20, 25, 30, 35, 40, 45 ]
 
 //* 3:  filter Method: Returns a new array → immutable. Keeps all elements that pass the condition in new array. Original array does not change. Can return empty array if nothing matches.
-
+// only used with array, also with string after Array.from(convert first to array) then. not used with anyother datatype
 //syntax
 // array.filter((element, index, array) => {
 //   // return true to keep the element
 // });
 
 // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 // const result = numbers.filter((curElem) => {
 //   return curElem > 4;
 // });
-
 // console.log(result); // [ 5, 6, 7, 8, 9 ]
+
+//? Reduce method: It runs a function on each element of an array, carrying a “accumulator” that stores the result. Finally, it returns one single value (number, string, object, etc.). Original array not changed (immutable).
+// only used with array, also with string after Array.from(convert first to array) then. not used with anyother datatype
+// syntax
+// array.reduce(function (accumulator, currentValue, index, array) {
+//   // Your logic here
+//   // Return the updated accumulator value
+// }, initialValue);
+
+// callback: A function that is called once for each element in the array.
+// accumulator: The accumulated result of the previous iterations.
+// currentValue: The current element being processed in the array.
+// index (optional): The index of the current element being processed.
+// array (optional): The array reduce was called upon.
+// initialValue (optional): An initial value for the accumulator. If not provided, the first element of the array is used as the initial accumulator value.
+
+// const productPrice = [100, 200, 300, 400, 500];
+// const totalPrice = productPrice.reduce((accum, currValue) => {
+//   return accum + currentValue;
+// }, 0);
+
+// console.log(totalPrice); // 1500
 
 // UseCase: In E-commerce website when we want to Remove or delete any product from addToCart page.
 //! Ex. le'ts say user wants to delete value 6.
@@ -422,10 +451,8 @@
 //* =========================================
 
 //? Map(), Filter(), Reduce(),
-// map() creates a new array from calling a function for every array element.
-// map() does not execute the function for empty elements.
-// map() and filter() both does not change the original array.
 
+// Interview Questions:
 // 1: Using map to square each number and create a new array
 
 // const numbers = [1, 2, 3, 4, 5];
@@ -444,7 +471,7 @@
 //     if (curElem % 2 === 0) {
 //       return curElem * curElem; // [ undefined, 4, undefined, 16, undefined ]
 //     }
-//   }).filter((curElem) => curElem !== undefined); // [ 4, 16 ]
+//   }).filter((curElem) => curElem !== undefined); // [ 4, 16 ] Here chaining used
 // console.log(result);
 
 // Professional way to solve this same
@@ -459,28 +486,6 @@
 // const names = ["ram", "vinod", "laxman"];
 // const prefixName = names.map((curName) => `Mr. ${curName}`);
 // console.log(prefixName); // [ 'Mr. ram', 'Mr. vinod', 'Mr. laxman' ]
-
-//? Reduce method: .reduce() reduces an array to a single value. It iterates through all elements and accumulates a result. Original array not changed (immutable).
-// syntax
-// array.reduce(function callback(accumulator, currentValue, index, array) {
-//   // Your logic here
-//   // Return the updated accumulator value
-// }, initialValue);
-
-// callback: A function that is called once for each element in the array.
-// accumulator: The accumulated result of the previous iterations.
-// currentValue: The current element being processed in the array.
-// index (optional): The index of the current element being processed.
-// array (optional): The array reduce was called upon.
-// initialValue (optional): An initial value for the accumulator. If not provided, the first element of the array is used as the initial accumulator value.
-
-// const productPrice = [100, 200, 300, 400, 500];
-// const totalPrice = productPrice.reduce((accum, currValue) => {
-//   return accum + currentValue;
-// }, 0);
-
-// console.log(totalPrice); // 1500
-
 //===============
 // Bonus: Methods
 //===============
@@ -490,3 +495,4 @@
 // console.log(another_arr); //[ 1, 2, 3, 4, 5, 4, 5, 6 ]
 
 //? array.isArray("Faseeh") -> to check is it array or not it give true or false in this case its false because its string.
+

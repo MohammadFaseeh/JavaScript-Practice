@@ -1,6 +1,6 @@
-//* ===============================
+//* =============================
 //* Conditional statement Section
-//* ===============================
+//* =============================
 
 //* ===============================
 //* If Statement
@@ -381,4 +381,24 @@
 //     pattern = pattern + " *";
 //   }
 //   console.log(pattern);
+// }
+
+//* ===================
+//* Continue and Break  
+//* ===================
+
+// break Statement -> Definition: It immediately exits the loop when a condition is met. After break, the loop stops running completely.
+// for (let i = 1; i <= 5; i++) {
+//   if (i === 3) {
+//     break;  // stop loop at 3
+//   }
+//   console.log(i); // 1 2 (Loop ends when i === 3)
+// }
+
+// continue Statement -> Definition: It skips the current iteration but continues with the next one. The loop does not stop, it just ignores that iteration.
+// for (let i = 1; i <= 5; i++) {
+//   if (i === 3) {
+//     continue;  // skip 3
+//   }
+//   console.log(i); // 1 2 4 5 (Only 3 is skipped, loop continues.)
 // }

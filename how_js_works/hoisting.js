@@ -50,6 +50,12 @@
 //   console.log("Hi!"); // ReferenceError: Cannot access 'sayHi' before initialization
 // };
 
+//? same this using arrow function
+// sayHi(); 
+// const sayHi = () => {
+//   console.log("Hi!"); // ReferenceError: Cannot access 'sayHi' before initialization
+// };
+
 //? 3. Class Hoisting
 // Classes are also hoisted but stay in the temporal dead zone like let and const.
 

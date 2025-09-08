@@ -100,3 +100,4 @@ greet.apply(person, ["Hey"]);
 
 const anotherWay = greet.bind(person, "hello");
 anotherWay();
+
